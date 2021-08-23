@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use MongoDB\Driver\Session;
+use function GuzzleHttp\Promise\exception_for;
 
 class ProductController extends Controller
 {
@@ -22,18 +24,31 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $newName = 'product_'.time().'.'.$request->file('photo')->getClientOriginalExtension();
-        $request->photo->move('uploads/products/',$newName);
+        try{
+            $request->validate([
+                'name'=>'required|min:5|max:30',
+                'price'=>'required',
+                'description'=>'required',
+                'photo'=>'required|image',
 
-        $data = [
-            'name'=> $request ->input('name'),
-            'price'=> $request ->input('price'),
-            'description'=> $request ->input('description'),
-            'photo'=> $newName
+            ]);
+            $newName = 'product_'.time().'.'.$request->file('photo')->getClientOriginalExtension();
+            $request->photo->move('uploads/products/',$newName);
 
-        ];
-        Product::create($data);
-        return redirect()->route('admin.product');
+            $data = [
+                'name'=> $request ->input('name'),
+                'price'=> $request ->input('price'),
+                'description'=> $request ->input('description'),
+                'photo'=> $newName
+
+            ];
+            Product::create($data);
+            return redirect()->route('admin.product');
+        }catch (\Exception $exception){
+
+            $errors =  $exception->validator->getMessageBag();
+            return redirect()->back()->withErrors($errors)->withInput();
+        }
     }
     public function edit($id)
     {
@@ -43,6 +58,14 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+        try{
+            $request->validate([
+                'name'=>'required|min:5|max:30',
+                'price'=>'required',
+                'description'=>'required',
+                'photo'=>'image',
+
+            ]);
         $product =Product::find($id);
         $data = [
             'name'=> $request ->input('name'),
@@ -63,6 +86,11 @@ class ProductController extends Controller
         }
 
         return redirect()->route('admin.product');
+        }catch (\Exception $exception){
+
+            $errors =  $exception->validator->getMessageBag();
+            return redirect()->back()->withErrors($errors)->withInput();
+        }
     }
 
     public function delete($id)
