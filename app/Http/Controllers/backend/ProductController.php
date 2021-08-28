@@ -12,9 +12,9 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $product=Product::orderBy('id','desc')->get();
+        $product = Product::orderBy('id', 'desc')->get();
 
-        return view('backend.products.index',compact('product'));
+        return view('backend.products.index', compact('product'));
     }
 
     public function create()
@@ -24,27 +24,27 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        try{
+        try {
             $request->validate([
-                'name'=>'required|min:5|max:30',
-                'price'=>'required',
-                'description'=>'required',
-                'photo'=>'required|image',
+                'name' => 'required|min:5|max:30',
+                'price' => 'required',
+                'description' => 'required',
+                'photo' => 'required|image | max:1024',
 
             ]);
-            $newName = 'product_'.time().'.'.$request->file('photo')->getClientOriginalExtension();
-            $request->photo->move('uploads/products/',$newName);
+            $newName = 'product_' . time() . '.' . $request->file('photo')->getClientOriginalExtension();
+            $request->photo->move('uploads/products/', $newName);
 
             $data = [
-                'name'=> $request ->input('name'),
-                'price'=> $request ->input('price'),
-                'description'=> $request ->input('description'),
-                'photo'=> $newName
+                'name' => $request->input('name'),
+                'price' => $request->input('price'),
+                'description' => $request->input('description'),
+                'photo' => $newName
 
             ];
             Product::create($data);
             return redirect()->route('admin.product');
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
 
             $errors =  $exception->validator->getMessageBag();
             return redirect()->back()->withErrors($errors)->withInput();
@@ -53,40 +53,39 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        return view('backend.products.edit',compact('product'));
+        return view('backend.products.edit', compact('product'));
     }
 
     public function update(Request $request, $id)
     {
-        try{
+        try {
             $request->validate([
-                'name'=>'required|min:5|max:30',
-                'price'=>'required',
-                'description'=>'required',
-                'photo'=>'image',
+                'name' => 'required|min:5|max:30',
+                'price' => 'required',
+                'description' => 'required',
+                'photo' => 'image',
 
             ]);
-        $product =Product::find($id);
-        $data = [
-            'name'=> $request ->input('name'),
-            'price'=> $request ->input('price'),
-            'description'=> $request ->input('description'),
-        ];
-        $product->update($data);
+            $product = Product::find($id);
+            $data = [
+                'name' => $request->input('name'),
+                'price' => $request->input('price'),
+                'description' => $request->input('description'),
+            ];
+            $product->update($data);
 
-        if ($request->file('photo')) {
-            if (file_exists('uploads/products/'.$product->photo)) {
-                unlink('uploads/products/'.$product->photo);
+            if ($request->file('photo')) {
+                if (file_exists('uploads/products/' . $product->photo)) {
+                    unlink('uploads/products/' . $product->photo);
+                }
 
+                $newName = 'product_' . time() . '.' . $request->file('photo')->getClientOriginalExtension();
+                $request->photo->move('uploads/products/', $newName);
+                $product->update(['photo' => $newName]);
             }
 
-            $newName = 'product_'.time().'.'.$request->file('photo')->getClientOriginalExtension();
-            $request->photo->move('uploads/products/',$newName);
-            $product->update(['photo'=>$newName]);
-        }
-
-        return redirect()->route('admin.product');
-        }catch (\Exception $exception){
+            return redirect()->route('admin.product');
+        } catch (\Exception $exception) {
 
             $errors =  $exception->validator->getMessageBag();
             return redirect()->back()->withErrors($errors)->withInput();
@@ -95,15 +94,14 @@ class ProductController extends Controller
 
     public function delete($id)
     {
-        $product= Product::find($id);
-        if (file_exists('uploads/products/'.$product->photo)) {
-            unlink('uploads/products/'.$product->photo);
-
+        $product = Product::find($id);
+        if (file_exists('uploads/products/' . $product->photo)) {
+            unlink('uploads/products/' . $product->photo);
         }
         $product->delete();
         return redirect()->back();
 
-//        product::where('id',$id)->delete();
-//        return redirect()->route('admin.product');
+        //        product::where('id',$id)->delete();
+        //        return redirect()->route('admin.product');
     }
 }
