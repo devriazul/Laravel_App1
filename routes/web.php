@@ -1,12 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\DashboardController;
-use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\UserController;
 
 Route::get('/', [DashboardController::class, 'index']);
-Route::get('/test', [DashboardController::class, 'test']);
 
 Route::get('/products', [ProductController::class, 'index'])->name('admin.product');
 
