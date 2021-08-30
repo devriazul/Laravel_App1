@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <h2 class="text-center">Create new user</h2>
+                <h2 class="text-center">Edit user</h2>
                {{-- @if ($errors->any())
                    <div class="alert alert-danger">
                        <ul>
@@ -15,32 +15,32 @@
                        </ul>
                    </div>
                @endif --}}
-                <form action="{{route('admin.user.create')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('admin.user.edit',$user->id)}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label" > Name</label>
-                        <input value="{{old('name')}}" placeholder="Enter your name here" type="text" class="form-control @error('name') is-invalid @enderror"  name="name" id="name" >
+                        <input value="{{$user->name}}" type="text" class="form-control @error('name') is-invalid @enderror"  name="name" id="name" >
                         @error('name')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label ">Phone</label>
-                        <input value="{{old('phone')}}" type="text"  placeholder="Enter your phone number here" class="form-control @error('phone') is-invalid @enderror"  name="phone" id="phone" >
+                        <input value="{{$user->email}}" type="text"   class="form-control @error('phone') is-invalid @enderror"  name="phone" id="phone" >
                         @error('phone')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="email" class=""form-label>Email</label>
-                        <input value="{{old('email')}}" type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email">
+                        <input value="{{$user->email}}" type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email">
                         @error('email')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Adress</label>
-                        <textarea placeholder="Enter your address here" class="form-control @error('address') is-invalid @enderror"  name="address" id="description" >{{old('address')}}</textarea>
+                        <textarea class="form-control @error('address') is-invalid @enderror"  name="address" id="description" >{{$user->address}}</textarea>
                         @error('address')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -60,7 +60,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Add user</button>
+                    <button type="submit" class="btn btn-primary">Edit user</button>
                 </form>
             </div>
         </div>

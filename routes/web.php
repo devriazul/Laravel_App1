@@ -21,3 +21,8 @@ Route::get('user', [UserController::class, 'index'])->name('admin.user');
 
 Route::get('user/create', [UserController::class, 'create'])->name('admin.user.create');
 Route::post('user/create', [UserController::class, 'store']);
+
+Route::get('user/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
+Route::post('user/edit/{id}', [UserController::class, 'update']);
+
+Route::get('user/delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');

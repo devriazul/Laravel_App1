@@ -51,4 +51,30 @@ class UserController extends Controller
             return redirect()->back()->withErrors($error)->withInput();
         }
     }
+    public function edit($id)
+    {
+        $user = User::find($id);
+        return view('backend.users.edit', compact('user'));
+    }
+    public function update(Request $request, $id)
+    {
+        // $user = User::find($id);
+        $inputs = [
+            'name' => $request->input('name'),
+            'phone' => $request->input('phone'),
+            'address' => $request->input('address'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'role' => 'admin',
+
+        ];
+        User::where('id', $id)->update($inputs);
+        return redirect()->route('admin.user');
+    }
+    public function delete($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->back();
+    }
 }
