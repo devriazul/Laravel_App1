@@ -4,8 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\UserController;
+use App\Http\Controllers\backend\LoginController;
 
-Route::get('/', [DashboardController::class, 'index']);
+Route::get('login', [LoginController::class, 'login'])->name('login');
+Route::post('login', [LoginController::class, 'dologin']);
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('profile', [LoginController::class, 'profile'])->name('profile');
+
+Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 Route::get('/products', [ProductController::class, 'index'])->name('admin.product');
 

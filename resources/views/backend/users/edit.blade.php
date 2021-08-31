@@ -26,7 +26,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label ">Phone</label>
-                        <input value="{{$user->email}}" type="text"   class="form-control @error('phone') is-invalid @enderror"  name="phone" id="phone" >
+                        <input value="{{$user->phone}}" type="text"   class="form-control @error('phone') is-invalid @enderror"  name="phone" id="phone" >
                         @error('phone')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
