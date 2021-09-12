@@ -27,7 +27,7 @@
                         <div class="form-group mb-3">
                             <label for="exampleInputEmail1">Email address</label>
                             <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                            
+
                         </div>
                         <div class="form-group mb-3">
                             <label for="exampleInputPassword1">Password</label>
@@ -37,7 +37,9 @@
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>
                         </div> --}}
+                        <a type="submit" class="btn btn-warning" href="{{route('home')}}">Back</a>
                         <button type="submit" class="btn btn-primary">Submit</button>
+
                     </form>
                     <p class="mt-3"><small>Demo email: "admin@admin.com" & Pass: "12345"</small></p>
                 </div>
