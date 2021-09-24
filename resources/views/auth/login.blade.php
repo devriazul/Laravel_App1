@@ -15,11 +15,7 @@
                         </ul>
                     </div>
                 @endif
-                @if (\Illuminate\Support\Facades\Session::has('message'))
-                    <div class="alert alert-danger">
-                        <p>{{ \Illuminate\Support\Facades\Session::get('message') }}</p>
-                    </div>
-                @endif
+
                 <form action="{{ route('login') }}" method="post">
                     @csrf
                     <div class="form-group mb-3">

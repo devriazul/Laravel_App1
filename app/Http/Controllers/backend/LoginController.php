@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use \Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -32,9 +33,12 @@ class LoginController extends Controller
                     return redirect()->route('admin.dashboard');
 
                 }
+                Session::flash('message', 'Login Successful!');
+                Session::flash('alert', 'success');
                 return redirect()->route('home');
             }
-           Session::flash('message', 'Invalid Credentials');
+           Session::flash('message', 'Invalid Credentials!');
+            Session::flash('alert', 'warning');
 
             return redirect()->back();
 
@@ -47,6 +51,8 @@ class LoginController extends Controller
     {
         try {
             auth()->logout();
+            Session::flash('message', 'Logout Successfully!');
+            Session::flash('alert', 'success');
             return redirect()->route('login');
         } catch (\Exception $exception) {
             return redirect()->back();
