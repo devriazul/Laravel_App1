@@ -12,8 +12,13 @@ Route::get('/',[\App\Http\Controllers\Frontend\HomeController::class,'index'])->
 Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::post('login', [LoginController::class, 'dologin']);
 
+Route::get('register',[App\Http\Controllers\Frontend\UserController::class,'register'])->name('register');
+Route::post('register',[App\Http\Controllers\Frontend\UserController::class,'doRegister']);
 
 Route::middleware('auth')->group(function (){
+
+    Route::get('userProfile',[App\Http\Controllers\Frontend\UserController::class,'userProfile'])->name('userProfile');
+    Route::post('userProfile',[App\Http\Controllers\Frontend\UserController::class,'editProfile']);
 
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
