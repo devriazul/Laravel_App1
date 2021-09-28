@@ -44,4 +44,14 @@ class CartController extends Controller
         $carts = session()->has('cart') ? session()->get('cart'):[];
         return view('frontend.cart', compact('carts'));
     }
+
+    public function checkout()
+    {
+
+    }
+
+    public function order()
+    {
+
+    }
 }

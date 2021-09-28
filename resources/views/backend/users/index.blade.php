@@ -28,8 +28,8 @@
                      <img src="{{asset('uploads/products/'.$product->photo)}}" alt="" height="50px">
                  </td> --}}
                  <td>
-                     <a href="{{route('admin.user.edit',$user->id)}}" class="btn btn-warning">Edit</a>
-                     <a href="{{route('admin.user.delete',$user->id)}}" class="btn btn-danger">Delete</a>
+                     <a href="{{route('admin.user.edit',$user->id)}}" class="btn btn-sm btn-warning">Edit</a>
+                     <a href="{{route('admin.user.delete',$user->id)}}" class="btn btn-sm btn-danger">Delete</a>
                  </td>
              </tr>
              @endforeach
