@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
+use PhpParser\Node\Stmt\Return_;
 
 class CartController extends Controller
 {
@@ -47,11 +51,41 @@ class CartController extends Controller
 
     public function checkout()
     {
-
+        $carts = session()->has('cart') ? session()->get('cart'):[];
+        return view('frontend.checkout',compact('carts'));
     }
 
-    public function order()
+    public function order(Request $request)
     {
+//dd($request->all());
 
+        $inputs=[
+            'name'=>$request->input('name'),
+            'email'=>$request->input('email'),
+            'phone'=>$request->input('phone'),
+            'address'=>$request->input('address'),
+            'price'=>$request->input('price'),
+            'quantity'=>$request->input('quantity'),
+            'trace_no'=> "Order_No_".auth()->user()->id. time(),
+            'user_id'=>auth()->user()->id,
+            'status'=>'Pending'
+        ];
+        $carts = session()->has('cart') ? session()->get('cart'):[];
+//        dd($carts);
+
+        $order = Order::create($inputs);
+
+        foreach ($carts as $cart){
+
+            OrderDetail::create([
+                'order_id'=>$order->id,
+                'product_id'=>$cart['product_id'],
+                'product_name'=>$cart['name'],
+                'product_price'=>$cart['price'],
+                'quantity'=>$cart['quantity'],
+            ]);
+        }
+        \session()->forget('cart');
+         return redirect()->route('userProfile');
     }
 }

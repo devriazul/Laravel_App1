@@ -45,10 +45,10 @@
             </table>
             @if($total_quantity == 0)
                 <div class="btn-warning">
-                    <p  href="">No Product Found!</p>
+                    <p  href="">No Product Found! Please add <a href="{{route('home')}}">Product!</a></p>
                 </div>
                 @else
-                <a class="btn btn-success" href="">Checkout</a>
+                <a class="btn btn-success" href="{{route('checkout')}}">Checkout</a>
                 @endif
 
         </div>
