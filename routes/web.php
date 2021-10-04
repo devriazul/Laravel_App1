@@ -53,6 +53,11 @@ Route::middleware('auth')->group(function (){
             Route::post('user/edit/{id}', [UserController::class, 'update']);
 
             Route::get('user/delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete');
+
+            //order
+
+            Route::get('orders',[\App\Http\Controllers\Backend\OrderController::class,'index'])->name('admin.order');
+
         });
     });
 });
