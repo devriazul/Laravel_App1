@@ -10,7 +10,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::paginate(8);
         return view('backend.orders.index',compact('orders'));
 
     }

@@ -5,16 +5,17 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use MongoDB\Driver\Session;
-use function GuzzleHttp\Promise\exception_for;
+//use MongoDB\Driver\Session;
+//use function GuzzleHttp\Promise\exception_for;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $product = Product::orderBy('id', 'desc')->get();
+        //$product = Product::orderBy('id', 'desc')->get();
+        $products = Product::orderBy('id', 'desc')->paginate(8);
 
-        return view('backend.products.index', compact('product'));
+        return view('backend.products.index', compact('products'));
     }
 
     public function create()
