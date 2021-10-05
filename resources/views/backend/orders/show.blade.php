@@ -17,6 +17,14 @@
                         </ul>
                     </div>
                 @endif
+                <p><strong>Order No: </strong>{{$order->trace_no}}</p>
+                <p><strong>Customer name: </strong>{{$order->name}}</p>
+                <p><strong>Customer email: </strong>{{$order->email}}</p>
+                <p><strong>Customer address: </strong>{{$order->address}}</p>
+                <p><strong>Customer Phone: </strong>{{$order->phone}}</p>
+                <p><strong>Total price: </strong>{{$order->price}}</p>
+                <p><strong>Total quantity: </strong>{{$order->quantity}}</p>
+                <p><strong>Status: </strong>{{$order->status}}</p>
                 <form action="{{ route('userProfile') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group mb-3">
