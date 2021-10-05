@@ -34,12 +34,11 @@
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>
                         </div> --}}
                     <a type="submit" class="btn btn-sm btn-warning" href="{{ route('home') }}">Back</a>
-                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Login</button>
+                    <a type="submit" class="btn btn-sm btn-success" href="{{ route('register') }}">Register</a>
 
                 </form>
                 <br>
-                <p>For Demo Admin Panel: ID: admin@admin.com & Pass: 12345</p>
-                <p>For Demo User Panel: ID: engr.riazul@gmail.com & Pass: 77492</p>
             </div>
         </div>
     </div>

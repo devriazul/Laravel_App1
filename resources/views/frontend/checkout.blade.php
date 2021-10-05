@@ -84,6 +84,18 @@
                         <label for="address">Your shipping address</label>
                         <textarea name="address" id="address" class="form-control" placeholder="Your address">{{auth()->user()->address}}</textarea>
                     </div>
+                    <div class="form-group mb-3">
+                        <label for="payment_method">Payment Method</label>
+                        <select name="payment_method" id="payment_method" class="form-control">
+                            <option value="bkash">Bkash</option>
+                            <option value="rocket">Rocket</option>
+                            <option value="nagad">Nagad</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="transaction_id">Transaction ID</label>
+                        <input type="text" name="transaction_id" id="transaction_id"></input>
+                    </div>
                     {{-- <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>

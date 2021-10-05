@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use function GuzzleHttp\Promise\all;
 
 class OrderController extends Controller
 {
@@ -19,5 +20,13 @@ class OrderController extends Controller
     {
         $order = Order::where('id',$id)->with('details')->first();
         return view('backend.orders.show',compact('order'));
+    }
+
+    public function update(Request $request, $id)
+    {
+//        dd($request->all());
+        $order = Order::find($id);
+        $order->update(['status'=>$request->input('status')]);
+        return redirect()->back();
     }
 }

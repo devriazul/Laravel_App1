@@ -58,6 +58,7 @@ Route::middleware('auth')->group(function (){
 
             Route::get('orders',[\App\Http\Controllers\Backend\OrderController::class,'index'])->name('admin.order');
             Route::get('orders/{id}',[\App\Http\Controllers\Backend\OrderController::class,'show'])->name('admin.order.show');
+            Route::post('orders/{id}',[\App\Http\Controllers\Backend\OrderController::class,'update']);
 
         });
     });
