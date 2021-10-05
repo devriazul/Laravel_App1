@@ -9,7 +9,6 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
-use PhpParser\Node\Stmt\Return_;
 
 class CartController extends Controller
 {
@@ -89,5 +88,11 @@ class CartController extends Controller
         }
         \session()->forget('cart');
          return redirect()->route('userProfile');
+    }
+
+    public function orderShow($id)
+    {
+        $order = Order::find($id);
+        return view('frontend.order',compact('order'));
     }
 }

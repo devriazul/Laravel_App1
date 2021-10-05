@@ -16,17 +16,13 @@ class User extends Authenticatable
      *
      * @var array
      */
-//    protected $fillable = [
-//        'name',
-//        'email',
-//        'password',
-//    ];
 
     protected $guarded=[];
 
     public function order()
     {
-        $this->hasMany(Order::class,'user_id','id');
+       return $this->hasMany(Order::class);
+//        $this->hasMany(Order::class,'user_id','id');
     }
 
 

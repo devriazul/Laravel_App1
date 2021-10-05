@@ -22,6 +22,8 @@ Route::middleware('auth')->group(function (){
     Route::get('checkout',[\App\Http\Controllers\Frontend\CartController::class,'checkout'])->name('checkout');
     Route::post('order',[\App\Http\Controllers\Frontend\CartController::class,'order'])->name('order');
 
+    Route::get('order/{id}',[\App\Http\Controllers\Frontend\CartController::class,'orderShow'])->name('order.show');
+
     Route::get('userProfile',[App\Http\Controllers\Frontend\UserController::class,'userProfile'])->name('userProfile');
     Route::post('userProfile',[App\Http\Controllers\Frontend\UserController::class,'editProfile']);
 

@@ -8,6 +8,8 @@
     <meta name="generator" content="Hugo 0.88.1">
     <title>{{config('app.name')}}</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+
 {{--    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">--}}
 
 
