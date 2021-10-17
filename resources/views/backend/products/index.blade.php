@@ -35,20 +35,7 @@
          {{$products->links()}}
      </div> --}}
      <div class="container mt-3">
-         <script>
-             $(document).ready(function () {
-                 $('#datatable').DataTable( {
-            dom: 'Bfrtip',
-            responsive: true,
-            // sDom: '<"d-md-flex d-sm-block align-items-center justify-content-start mb-4"<"d-md-flex d-sm-block align-items-center mr-3"l>B<"ml-auto"f>>rtip',
-            buttons: [
-                // { extend: 'copy', className: 'btn btn-default'},
-                { extend: 'excel', className: 'btn btn-success'},
-                { extend: 'pdf', className: 'btn btn-danger'},
-                { extend: 'print', className: 'btn btn-default'},
-                { extend: 'colvis', className: 'btn btn-warning'}
-            ],
-         </script>
+
         <table id="table_id" class="display">
             <thead>
                 <tr>
