@@ -34,7 +34,7 @@
          </table>
          {{$products->links()}}
      </div> --}}
-     <div class="container mt-3">
+     <div class="container mt-4">
 
         <table id="table_id" class="display">
             <thead>
