@@ -90,8 +90,8 @@ class CartController extends Controller
         }
         \session()->forget('cart');
 
-        Mail::to(auth()->user()->email)->send(new OrderMail($order));
-        Mail::to('engr.riazul@gmail.com')->send(new OrderMail($order));
+        Mail::to(auth()->user()->email)->send(new OrderMail());
+        // Mail::to('engr.riazul@gmail.com')->send(new OrderMail($order));
 
          return redirect()->route('userProfile');
     }
