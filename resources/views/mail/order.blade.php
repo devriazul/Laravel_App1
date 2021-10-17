@@ -7,6 +7,47 @@
     <title>Confirmationa Mail!</title>
 </head>
 <body>
-    <h1>Your order completed!</h1>
+    <h1>Order Successful!</h1>
+
+    <div>
+        <h3>Order Details</h3>
+                <p><strong>Order No: </strong>{{$order->trace_no}}</p>
+                <p><strong>Customer name: </strong>{{$order->name}}</p>
+                <p><strong>Customer email: </strong>{{$order->email}}</p>
+                <p><strong>Customer address: </strong>{{$order->address}}</p>
+                <p><strong>Customer Phone: </strong>{{$order->phone}}</p>
+                <p><strong>Total price: </strong>{{$order->price}}</p>
+                <p><strong>Total quantity: </strong>{{$order->quantity}}</p>
+                <p><strong>Status: </strong>{{$order->status}}</p>
+                <p><strong>Payment Method: </strong>{{$order->payment_method}}</p>
+                <p><strong>Transaction ID: </strong>{{$order->transaction_id}}</p>
+                <p><strong>Order Date: </strong>{{$order->created_at}}</p>
+    </div>
+
+    <div>
+        <h3>Product Details</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($order->details as $key=>$details)
+                <tr>
+                    <td>{{$details->product_name}}</td>
+                    <td>{{$details->product_price}}</td>
+                    <td>{{$details->quantity}}</td>
+                    <td>{{$details->quantity * $details->product_price}}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <p>Thank You!</p>
 </body>
 </html>
