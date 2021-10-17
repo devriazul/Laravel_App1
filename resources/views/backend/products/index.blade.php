@@ -34,33 +34,49 @@
          </table>
          {{$products->links()}}
      </div> --}}
-     <table id="table_id" class="display">
-        <thead>
-            <tr>
-                <th scope="col">Serial No:</th>
-                <th scope="col">Product Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Description</th>
-                <th scope="col">Photo</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($products as $key=>$product)
-             <tr>
-                 <th scope="row">{{$key+1}}</th>
-                 <td>{{$product->name}}</td>
-                 <td>{{$product->price}} BDT</td>
-                 <td>{{$product->description}}</td>
-                 <td>
-                     <img src="{{asset('uploads/products/'.$product->photo)}}" alt="" height="50px">
-                 </td>
-                 <td>
-                     <a href="{{route('admin.product.edit',$product->id)}}" class="btn btn-warning">Edit</a>
-                     <a href="{{route('admin.product.delete',$product->id)}}" class="btn btn-danger">Delete</a>
-                 </td>
-             </tr>
-             @endforeach
-        </tbody>
-    </table>
+     <div class="container mt-3">
+         <script>
+             $(document).ready(function () {
+                 $('#datatable').DataTable( {
+            dom: 'Bfrtip',
+            responsive: true,
+            // sDom: '<"d-md-flex d-sm-block align-items-center justify-content-start mb-4"<"d-md-flex d-sm-block align-items-center mr-3"l>B<"ml-auto"f>>rtip',
+            buttons: [
+                // { extend: 'copy', className: 'btn btn-default'},
+                { extend: 'excel', className: 'btn btn-success'},
+                { extend: 'pdf', className: 'btn btn-danger'},
+                { extend: 'print', className: 'btn btn-default'},
+                { extend: 'colvis', className: 'btn btn-warning'}
+            ],
+         </script>
+        <table id="table_id" class="display">
+            <thead>
+                <tr>
+                    <th scope="col">Serial No:</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($products as $key=>$product)
+                 <tr>
+                     <th scope="row">{{$key+1}}</th>
+                     <td>{{$product->name}}</td>
+                     <td>{{$product->price}} BDT</td>
+                     <td>{{$product->description}}</td>
+                     <td>
+                         <img src="{{asset('uploads/products/'.$product->photo)}}" alt="" height="50px">
+                     </td>
+                     <td>
+                         <a href="{{route('admin.product.edit',$product->id)}}" class="btn btn-warning">Edit</a>
+                         <a href="{{route('admin.product.delete',$product->id)}}" class="btn btn-danger">Delete</a>
+                     </td>
+                 </tr>
+                 @endforeach
+            </tbody>
+        </table>
+     </div>
  @endsection
