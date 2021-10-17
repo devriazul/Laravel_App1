@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Confirmationa Mail!</title>
+    <style>
+        table, th, td{
+            border: 1px solid green;
+        }
+        </style>
 </head>
 <body>
     <h1>Order Successful!</h1>
@@ -25,14 +30,14 @@
     </div>
 
     <div>
-        <h3>Product Details</h3>
+        <h3>Order Summary</h3>
         <table>
             <thead>
             <tr>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
+                <th scope="col">Product name</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
             </tr>
             </thead>
             <tbody>
@@ -44,8 +49,10 @@
                     <td>{{$details->quantity * $details->product_price}}</td>
                 </tr>
             @endforeach
+
             </tbody>
         </table>
+
     </div>
 
     <p>Thank You!</p>
