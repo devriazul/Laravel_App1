@@ -12,6 +12,7 @@
         </style>
 </head>
 <body>
+{{-- mail message --}}
     <h1>Order Successful!</h1>
 
     <div>
