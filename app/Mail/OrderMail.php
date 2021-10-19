@@ -14,7 +14,7 @@ class OrderMail extends Mailable
     public $order;
 
     /**
-     * Create a new message instance.
+     * Create a new message instance
      *
      * @return void
      */
