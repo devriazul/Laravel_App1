@@ -1,3 +1,4 @@
+{{-- This is an Email Message Body --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
